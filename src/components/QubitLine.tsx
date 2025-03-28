@@ -52,7 +52,7 @@ const QubitLine: React.FC<QubitLineProps> = ({
       <div className="gate-track">
         {gates.map((gate, gateIndex) => (
           <motion.div 
-            key={gate.id || `${gate.type}-${gateIndex}`} 
+            key={`${gate.type}-${gateIndex}`} 
             className="gate-container"
             style={{ left: `${gateIndex * 50}px` }} // Position based on index
             initial={{ opacity: 0, y: -10 }}

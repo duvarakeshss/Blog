@@ -7,10 +7,10 @@ function useQuantumCircuit() {
   const [history, setHistory] = useState<QubitLineState[][]>([]);
   const [redoStack, setRedoStack] = useState<QubitLineState[][]>([]);
 
-  const saveHistory = useCallback(() => {
-    setHistory(prev => [...prev, qubits]);
-    setRedoStack([]);
-  }, [qubits]);
+  // const saveHistory = useCallback(() => {
+  //   setHistory(prev => [...prev, qubits]);
+  //   setRedoStack([]);
+  // }, [qubits]);
 
   const addQubit = useCallback(() => {
     setQubits(prev => {
