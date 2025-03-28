@@ -5,13 +5,10 @@ import { GateType } from '../types/quantum';
 const GateSelector: React.FC = () => {
   const gates: GateType[] = ['H', 'CNOT'];
 
-  // Store drag data manually using pointer events
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>, gate: GateType) => {
-    const dataTransfer = (e as unknown as DragEvent).dataTransfer;
-    if (dataTransfer) {
-      dataTransfer.setData('text/plain', gate);
-      dataTransfer.effectAllowed = 'move';
-    }
+  // Handle drag start event correctly
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, gate: GateType) => {
+    e.dataTransfer.setData('text/plain', gate);
+    e.dataTransfer.effectAllowed = 'move';
   };
 
   return (
@@ -21,8 +18,8 @@ const GateSelector: React.FC = () => {
           key={gate}
           className="px-4 py-2 bg-orange-400 text-white font-bold rounded-md shadow-md cursor-pointer"
           draggable
-          // Use pointer event to manually handle drag data
-          onPointerDownCapture={(e) => handlePointerDown(e, gate)}
+          // Ensure proper typing for drag event
+          onDragStart={(e) => handleDragStart(e, gate)} 
           whileHover={{ scale: 1.1 }} // Slight scale-up on hover
           whileTap={{ scale: 0.9 }} // Shrinks when tapped or clicked
         >
