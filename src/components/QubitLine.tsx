@@ -17,26 +17,23 @@ const QubitLine: React.FC<QubitLineProps> = ({
   onAddGate 
 }) => {
   
-  // Handles right-click (context menu) to remove qubit
   const handleContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     onRemoveQubit();
   };
 
-  // Handles when a gate is dragged over the qubit line
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault(); // Allows dropping
+    e.preventDefault(); 
   };
 
-  // Handles dropping a gate onto the qubit line
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const gateType = e.dataTransfer.getData('text/plain') as GateType;
-    if (!gateType) return; // Ensure valid gate
+    if (!gateType) return; 
 
-    // Determine position (based on mouse X)
+    
     const rect = e.currentTarget.getBoundingClientRect();
-    const position = Math.floor((e.clientX - rect.left) / 50); // Adjust for spacing
+    const position = Math.floor((e.clientX - rect.left) / 50); 
 
     onAddGate(gateType, position);
   };
@@ -54,7 +51,7 @@ const QubitLine: React.FC<QubitLineProps> = ({
           <motion.div 
             key={`${gate.type}-${gateIndex}`} 
             className="gate-container"
-            style={{ left: `${gateIndex * 50}px` }} // Position based on index
+            style={{ left: `${gateIndex * 50}px` }} 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
