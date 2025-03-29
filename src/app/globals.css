@@ -12,6 +12,16 @@ body {
 .quantum-circuit-container {
   @apply p-6 bg-black min-h-screen flex flex-col items-center;
 }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 4s infinite linear;
+}
 
 .circuit-controls {
   @apply flex space-x-4 mb-4;
