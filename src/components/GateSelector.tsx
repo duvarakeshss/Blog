@@ -19,7 +19,7 @@ const GateSelector: React.FC = () => {
   const applyGate = (gate: GateType) => {
     setProbabilities((prevProbabilities) => {
       const newProbabilities: Record<string, number> = { ...prevProbabilities };
-      
+
       Object.entries(prevProbabilities).forEach(([state, prob]) => {
         if (gate === 'H') {
           newProbabilities[state] = (newProbabilities[state] || 0) + prob * 0.5;
@@ -35,12 +35,12 @@ const GateSelector: React.FC = () => {
           }
         }
       });
-      
+
       return newProbabilities;
     });
   };
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>, gate: GateType) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>, gate: GateType) => {
     applyGate(gate);
     if (e.currentTarget) {
       const dataTransfer = new DataTransfer();
@@ -54,12 +54,12 @@ const GateSelector: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-ols-2 gap-6 p-6">
-      <div className="grid grid-cols-2 gap-4 justify-center md:justify-start">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+      <div className="grid grid-cols-2 size-max gap-4 justify-center md:justify-start">
         {gates.map((gate) => (
           <motion.button
             key={gate}
-            className="px-6 py-3 font-bold rounded-lg shadow-md 
+            className="py-4 font-bold rounded-lg shadow-md 
              bg-gradient-to-r from-purple-500 to-blue-500 
              hover:from-blue-500 hover:to-purple-500 
              transition-all duration-300 text-white text-center"
@@ -72,7 +72,7 @@ const GateSelector: React.FC = () => {
         ))}
         <div className="border-2 border-black p-4 rounded-md px-6 justify-center text-center">
           <h3 className="text-lg text-blue-700 font-semibold mb-4">Drag and Drop Gates</h3>
-          </div>
+        </div>
       </div>
       <ProbabilityChart probabilities={probabilities} />
     </div>
