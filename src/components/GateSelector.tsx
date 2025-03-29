@@ -18,7 +18,7 @@ const GateSelector: React.FC = () => {
 
   const applyGate = (gate: GateType) => {
     setProbabilities((prevProbabilities) => {
-      let newProbabilities: Record<string, number> = { ...prevProbabilities };
+      const newProbabilities: Record<string, number> = { ...prevProbabilities };
       
       Object.entries(prevProbabilities).forEach(([state, prob]) => {
         if (gate === 'H') {
